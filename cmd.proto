@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+message Movement{
+    int32 mtr_spd = 1;         // motor speed state
+    int32 mtr_ang = 2;         //motor angle state
+}
+
+message Mining{
+    bool mtr_mining = 1;            //activate mining motor
+    bool extend = 2;                //extend mining actuators
+    bool retract = 3;               //retract mining actuators
+    uint32 dig_spd = 4;             //adjust dig velocity
+}
+
+message Dumping{
+    bool extend = 1;            //extend dumping actuators
+    bool retract = 2;           //retract dumping actuators
+}
+
+//we wrap each message with an identifying int
+message WrapperMessage{
+    oneof msg{
+        Movement movement = 2;
+        Mining mining = 3;
+        Dumping dumping = 4;
+    }
+}
