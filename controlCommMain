@@ -32,8 +32,8 @@ while True:
         #Move Servos
         angle1 = angle + 850
         angle2 = angle + 2400
-        angle3 = angle + 1850
-        angle4 = angle + 3200
+        angle3 = -1*angle + 1850
+        angle4 = -1*angle + 3200
         moveRover.moveServos(port, pack, angle1, angle2, angle3, angle4)
 
     elif data[0] == 'mine':
