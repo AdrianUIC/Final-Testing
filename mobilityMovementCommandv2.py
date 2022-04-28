@@ -39,6 +39,12 @@ class moveRover:
         outputString = strBase + str(vel) + ''
         #controller.send_raw_command(outputString)
         controller.send_raw_command("@02!G 1 400 ")
+        if vel>0:
+            controller.send_raw_command("@01!G 1 200 ")
+        elif vel<0:
+            controller.send_raw_command("@01!G 1 -200 ")
+        else:
+            controller.send_raw_command("@01!G 1 0 ")
         return(1)
     
 
