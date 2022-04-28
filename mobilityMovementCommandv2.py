@@ -9,7 +9,7 @@ class moveRover:
     def init_Roboteq():
         #Link to Roboteq motor controller
         controller = RoboteqHandler(debug_mode=True, exit_on_interrupt=False)
-        connected = controller.connect("/dev/ttyACM3") # Insert your COM port (for windows) or /dev/tty{your_port} (Commonly /dev/ttyACM0) for linux.
+        connected = controller.connect("/dev/ttyACM0") # Insert your COM port (for windows) or /dev/tty{your_port} (Commonly /dev/ttyACM0) for linux.
         return(controller)
 
     #Wheel motors are on Node 1 Channel 1
