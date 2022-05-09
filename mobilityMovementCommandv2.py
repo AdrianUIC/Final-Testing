@@ -35,10 +35,10 @@ class moveRover:
     #Digging Actuator is on Node 2 channel 1
     def digActuator(controller, vel):
         #controller_volts2 = controller.read_value("@02?T", 0)
-        strBase = "@01!G 1 "
-        outputString = strBase + str(vel) + ''
+        #strBase = "@01!G 1 "
+        #outputString = strBase + str(vel) + ''
         #controller.send_raw_command(outputString)
-        controller.send_raw_command("@02!G 1 400 ")
+        #controller.send_raw_command("@02!G 1 400 ")
         if vel>0:
             controller.send_raw_command("@01!G 1 200 ")
         elif vel<0:
@@ -51,8 +51,8 @@ class moveRover:
     #Dump Actuators are Node 2 channel 2
     def dumpActuator(controller, vel):
         #controller_volts2 = controller.read_value("@02?T", 0)
-        strBase = "@02!G 2 "
-        outputString = strBase + str(vel) + ''
+        #strBase = "@02!G 2 "
+        #outputString = strBase + str(vel) + ''
         #controller.send_raw_command(outputString)
         if vel>0:
             controller.send_raw_command("@01!G 2 200 ")
