@@ -34,7 +34,7 @@ class moveRover:
     #Digging Actuator is on Node 2 channel 1
     def digActuator(rc2, vel):
         address = 0x80
-        speed = 32
+        speed = 16
         if vel>0:
             rc2.ForwardM1(address, speed)
         elif vel<0:
@@ -47,7 +47,7 @@ class moveRover:
     #Dump Actuators are Node 2 channel 2
     def dumpActuator(rc2, vel):
         address = 0x80
-        speed = 32
+        speed = 16
 
         if vel>0:
             rc2.ForwardM1(address, speed)
