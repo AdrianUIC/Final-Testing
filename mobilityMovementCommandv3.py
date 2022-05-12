@@ -8,12 +8,26 @@ from dynamixel_sdk import * # Uses Dynamixel SDK library
 class moveRover:
 
     def init_RoboClaw():
+        address = 0x80
         #Top right USB Port
         rc1 = Roboclaw("/dev/ttyACM0",115200)
         #Top Left USB Port
         rc2 = Roboclaw("/dev/ttyACM1",115200)
         rc1.Open()
         rc2.Open()
+        version = rc1.ReadVersion(address)
+        
+        if version[0]==False:
+            print("GETVERSION Failed")
+        else:
+            print(repr(version[1]))
+        version = rc2.ReadVersion(address)
+        
+        if version[0]==False:
+            print("GETVERSION Failed")
+        else:
+            print(repr(version[1]))
+
         return(rc1, rc2)
       
 
@@ -36,7 +50,7 @@ class moveRover:
         address = 0x80
         speed = 16
         if vel>0:
-            rc2.ForwardM1(address, speed)
+            rc2.ForwardM1(address,speed)
         elif vel<0:
             rc2.BackwardM1(address, speed)
         else:
@@ -50,11 +64,11 @@ class moveRover:
         speed = 16
 
         if vel>0:
-            rc2.ForwardM1(address, speed)
+            rc2.ForwardM2(address, speed)
         elif vel<0:
-            rc2.BackwardM1(address, speed)
+            rc2.BackwardM2(address, speed)
         else:
-            rc2.BackwardM1(address, 0)
+            rc2.BackwardM2(address, 0)
         return(1)
 
     def servoSetup():
@@ -99,7 +113,7 @@ class moveRover:
 
         # Use the actual port assigned to the U2D2.
         # ex) Windows: "COM*", Linux: "/dev/ttyUSB*", Mac: "/dev/tty.usbserial-*"
-        DEVICENAME                  = '/dev/ttyUSB0'
+        DEVICENAME                  = '/dev/ttyUSB3'
 
         TORQUE_ENABLE               = 1     # Value for enabling the torque
         TORQUE_DISABLE              = 0     # Value for disabling the torque
