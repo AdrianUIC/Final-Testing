@@ -11,10 +11,10 @@ PORT = 2356
 #create serializer and reciever objects
 ser = serdes.deserializer()
 recv = tcpModule.reciever(HOST, PORT)
-angle1 = 850
-angle2 = 2400
-angle3 = 1850
-angle4 = 3200
+angle1 = 1150 #850 note 850 all thw way left, 1450 all the way right
+angle2 = 1150 #2400, note same as above for turning
+angle3 = 1600 #1850, note 2000 for turnng left, 1200 for right
+angle4 = 3600 #3200, note 3900 for left, 3300 for right
 
 moveRover.moveServos(port, pack, angle1, angle2, angle3, angle4)
 
