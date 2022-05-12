@@ -1,6 +1,6 @@
 import serdes
 import tcpModule
-from mobilityMovementCommand import moveRover
+from mobilityMovementCommandv3 import moveRover
 
 port, pack = moveRover.servoSetup()
 rc1, rc2 = moveRover.init_RoboClaw()
@@ -32,7 +32,7 @@ while True:
             angle = data[2]
             print(str(angle) +' '+str(wheelVel))
             print(type(angle))
-            print(type(wheelVel))
+            #print(type(wheelVel))
 
             #Move Wheels
             amps = moveRover.wheelMotors(rc1, wheelVel)
