@@ -29,6 +29,31 @@ class moveRover:
             print(repr(version[1]))
 
         return(rc1, rc2)
+
+    #emergency stop
+    def estop(rc1, rc2, portHandler, packetHandler):
+        address = 0x80
+        rc1.BackwardM1(address, 0)
+        rc1.BackwardM2(address, 0)
+        rc2.BackwardM1(address, 0)
+        rc2.BackwardM2(address, 0)
+
+        #control servo movement
+        DXL_ID1 = 1
+        DXL_ID2 = 2
+        DXL_ID3 = 3
+        DXL_ID4 = 4
+        ADDR_TORQUE_ENABLE          = 64
+        TORQUE_ENABLE               = 0     # Value for enabling the torque
+        TORQUE_DISABLE              = 1     # Value for disabling the torque
+
+        # Disable Dynamixel Torque
+        dxl_comm_result1, dxl_error1 = packetHandler.write1ByteTxRx(portHandler, DXL_ID1, ADDR_TORQUE_ENABLE, TORQUE_DISABLE)
+        dxl_comm_result2, dxl_error2 = packetHandler.write1ByteTxRx(portHandler, DXL_ID2, ADDR_TORQUE_ENABLE, TORQUE_DISABLE)
+        dxl_comm_result1, dxl_error1 = packetHandler.write1ByteTxRx(portHandler, DXL_ID3, ADDR_TORQUE_ENABLE, TORQUE_DISABLE)
+        dxl_comm_result2, dxl_error2 = packetHandler.write1ByteTxRx(portHandler, DXL_ID4, ADDR_TORQUE_ENABLE, TORQUE_DISABLE)    
+
+
       
 
     #Wheel motors are on Node 1 Channel 1
@@ -76,6 +101,7 @@ class moveRover:
             import msvcrt
             def getch():
                 return msvcrt.getch().decode()
+
         '''
         else:
             import sys, tty, termios
@@ -113,7 +139,7 @@ class moveRover:
 
         # Use the actual port assigned to the U2D2.
         # ex) Windows: "COM*", Linux: "/dev/ttyUSB*", Mac: "/dev/tty.usbserial-*"
-        DEVICENAME                  = '/dev/ttyUSB3'
+        DEVICENAME                  = '/dev/ttyUSB0'
 
         TORQUE_ENABLE               = 1     # Value for enabling the torque
         TORQUE_DISABLE              = 0     # Value for disabling the torque
