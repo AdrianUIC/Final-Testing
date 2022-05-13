@@ -5,23 +5,26 @@ from mobilityMovementCommandv3 import moveRover
 import os
 import RPi.GPIO as GPIO
 
-while(1):
+while True:
     try:
+        #monitor pi with GPIO
+        LED_PIN = 17
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(LED_PIN, GPIO.OUT)
+        GPIO.output(LED_PIN, GPIO.HIGH)
+        time.sleep(2)
+
         port, pack = moveRover.servoSetup()
         rc1, rc2 = moveRover.init_RoboClaw()
 
         HOST = '192.168.1.162'
         PORT = 2356
 
-        #monitor pi with GPIO
-        LED_PIN = 17
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(LED_PIN, GPIO.OUT)
-        GPIO.output(LED_PIN, GPIO.HIGH)
-
         #create serializer and reciever objects
         ser = serdes.deserializer()
+        print('waiting to connect')
         recv = tcpModule.reciever(HOST, PORT)
+        print('connection confirmed')
         angle1 = 1150 #850 note 850 all thw way left, 1450 all the way right
         angle2 = 1150 #2400, note same as above for turning
         angle3 = 1600 #1850, note 2000 for turnng left, 1200 for right
@@ -68,6 +71,7 @@ while(1):
 
 
         #recieve messages
+        print('will now recieve messages!')
         while True:
             
             msg = recv.recieve_msg()
@@ -128,5 +132,8 @@ while(1):
             moveRover.moveServos(port, pack, flang, frang, blang, brang)
 
     except:
-        os.system('controlCommMainv3.py')
+        pass
+        #timer to reset
+        #look up how to shut down
+        #os.system('controlCommMainv3.py')
 
