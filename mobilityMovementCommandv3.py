@@ -30,7 +30,7 @@ class moveRover:
 
         return(rc1, rc2)
 
-    #emergency stop
+     #emergency stop
     def estop(rc1, rc2, portHandler, packetHandler):
         address = 0x80
         rc1.BackwardM1(address, 0)
@@ -73,7 +73,7 @@ class moveRover:
     #Digging Actuator is on Node 2 channel 1
     def digActuator(rc2, vel):
         address = 0x80
-        speed = 16
+        speed = 32
         if vel>0:
             rc2.ForwardM1(address,speed)
         elif vel<0:
@@ -86,7 +86,7 @@ class moveRover:
     #Dump Actuators are Node 2 channel 2
     def dumpActuator(rc2, vel):
         address = 0x80
-        speed = 16
+        speed = 32
 
         if vel>0:
             rc2.ForwardM2(address, speed)
@@ -101,7 +101,6 @@ class moveRover:
             import msvcrt
             def getch():
                 return msvcrt.getch().decode()
-
         '''
         else:
             import sys, tty, termios

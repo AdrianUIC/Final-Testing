@@ -1,5 +1,6 @@
 import serdes
 import tcpModule
+import time
 from mobilityMovementCommandv3 import moveRover
 
 port, pack = moveRover.servoSetup()
@@ -16,7 +17,45 @@ angle2 = 1150 #2400, note same as above for turning
 angle3 = 1600 #1850, note 2000 for turnng left, 1200 for right
 angle4 = 3600 #3200, note 3900 for left, 3300 for right
 
+flang = angle1
+frang = angle2
+blang = angle3
+brang = angle4
+
+'''
 moveRover.moveServos(port, pack, angle1, angle2, angle3, angle4)
+moveRover.moveServos(port, pack, angle1, angle2, angle3, angle4)
+moveRover.moveServos(port, pack, angle1, angle2, angle3, angle4)
+time.sleep(2)
+
+#turn left:
+angle = 350
+flang = angle + angle1
+frang = angle + angle2
+blang = -1*angle + angle3
+brang = -1*angle + angle4
+
+moveRover.moveServos(port, pack, flang, frang, blang, brang)
+moveRover.moveServos(port, pack, flang, frang, blang, brang)
+moveRover.moveServos(port, pack, flang, frang, blang, brang)
+
+time.sleep(2)
+moveRover.moveServos(port, pack, angle1, angle2, angle3, angle4)
+moveRover.moveServos(port, pack, angle1, angle2, angle3, angle4)
+moveRover.moveServos(port, pack, angle1, angle2, angle3, angle4)
+'''
+
+'''
+rc2.BackwardM1(0x80, 40)
+print('extend')
+time.sleep(2)
+temp = rc1.ReadCurrents(0x80)
+print(repr(temp[1]))
+rc2.ForwardM1(0x80, 0)
+print('stop')
+'''
+
+
 
 #recieve messages
 while True:
@@ -30,19 +69,25 @@ while True:
 
             wheelVel = data[1]
             angle = data[2]
-            print(str(angle) +' '+str(wheelVel))
-            print(type(angle))
+            #print(str(angle) +' '+str(wheelVel))
+            print(str(angle))
+            #print(type(angle))
             #print(type(wheelVel))
 
             #Move Wheels
+            print(wheelVel)
             amps = moveRover.wheelMotors(rc1, wheelVel)
 
             #Move Servos
-            angle1 = angle + 850
-            angle2 = angle + 2400
-            angle3 = -1*angle + 1850
-            angle4 = -1*angle + 3200
-            moveRover.moveServos(port, pack, angle1, angle2, angle3, angle4)
+            flang = angle + angle1
+            #print(flang)
+            frang = angle + angle2
+            #print(frang)
+            blang = -1*angle + angle3
+            #print(blang)
+            brang = -1*angle + angle4
+            #print(brang)
+            moveRover.moveServos(port, pack, flang, frang, blang, brang)
 
         elif data[0] == 'mine':
             speed = 300
@@ -68,7 +113,8 @@ while True:
                 curr = moveRover.dumpActuator(rc2, 0)
             pass
         
-        moveRover.moveServos(port, pack, angle1, angle2, angle3, angle4)
+        moveRover.moveServos(port, pack, flang, frang, blang, brang)
 
     except:
         pass
+
