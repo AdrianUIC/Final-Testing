@@ -8,16 +8,17 @@ import RPi.GPIO as GPIO
 while True:
     try:
         #monitor pi with GPIO
-        # LED_PIN = 17
-        # GPIO.setmode(GPIO.BCM)
-        # GPIO.setup(LED_PIN, GPIO.OUT)
-        # GPIO.output(LED_PIN, GPIO.HIGH)
-        # time.sleep(2)
+        #LED_PIN = 17
+        #GPIO.setmode(GPIO.BCM)
+        #GPIO.setup(LED_PIN, GPIO.OUT)
+        #GPIO.output(LED_PIN, GPIO.HIGH)
 
         port, pack = moveRover.servoSetup()
         rc1, rc2 = moveRover.init_RoboClaw()
+        print('motor controller and servos connected!')
 
-        HOST = '192.168.1.162'
+        HOST = '192.168.0.102'
+        #HOST = '0.0.0.0'
         PORT = 2356
 
         #create serializer and reciever objects
@@ -131,9 +132,8 @@ while True:
             
             moveRover.moveServos(port, pack, flang, frang, blang, brang)
 
-    except:
+    except Exception as e:
+        print(e)
         pass
-        #timer to reset
-        #look up how to shut down
         #os.system('controlCommMainv3.py')
 
