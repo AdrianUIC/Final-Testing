@@ -8,11 +8,11 @@ import RPi.GPIO as GPIO
 while True:
     try:
         #monitor pi with GPIO
-        LED_PIN = 17
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(LED_PIN, GPIO.OUT)
-        GPIO.output(LED_PIN, GPIO.HIGH)
-        time.sleep(2)
+        # LED_PIN = 17
+        # GPIO.setmode(GPIO.BCM)
+        # GPIO.setup(LED_PIN, GPIO.OUT)
+        # GPIO.output(LED_PIN, GPIO.HIGH)
+        # time.sleep(2)
 
         port, pack = moveRover.servoSetup()
         rc1, rc2 = moveRover.init_RoboClaw()

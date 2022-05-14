@@ -8,11 +8,11 @@ import RPi.GPIO as GPIO
 while True:
     try:
         #monitor pi with GPIO
-        LED_PIN = 17
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(LED_PIN, GPIO.OUT)
-        GPIO.output(LED_PIN, GPIO.HIGH)
-        time.sleep(2)
+        # LED_PIN = 17
+        # GPIO.setmode(GPIO.BCM)
+        # GPIO.setup(LED_PIN, GPIO.OUT)
+        # GPIO.output(LED_PIN, GPIO.HIGH)
+        # time.sleep(2)
 
         port, pack = moveRover.servoSetup()
         rc1, rc2 = moveRover.init_RoboClaw()
@@ -109,25 +109,25 @@ while True:
                 speed = 300
                 digVel = data[4]
                 print(digVel)
-                moveRover.digMotor(rc1, digVel)
+                #moveRover.digMotor(rc1, digVel)
 
-                if data[2]:
-                    curr = moveRover.digActuator(rc2, speed)
-                elif data[3]:
-                    curr = moveRover.digActuator(rc2, -speed)
-                else:
-                    curr = moveRover.digActuator(rc2, 0)
+                # if data[2]:
+                #     curr = moveRover.digActuator(rc2, speed)
+                # elif data[3]:
+                #     curr = moveRover.digActuator(rc2, -speed)
+                # else:
+                #     curr = moveRover.digActuator(rc2, 0)
 
 
             elif data[0] == 'dump':
                 speed = 300
-                if data[1]:
-                    curr = moveRover.dumpActuator(rc2, speed)
-                elif data[2]:
-                    curr = moveRover.dumpActuator(rc2, -speed)
-                else:
-                    curr = moveRover.dumpActuator(rc2, 0)
-                pass
+                # if data[1]:
+                #     curr = moveRover.dumpActuator(rc2, speed)
+                # elif data[2]:
+                #     curr = moveRover.dumpActuator(rc2, -speed)
+                # else:
+                #     curr = moveRover.dumpActuator(rc2, 0)
+                # pass
             
             moveRover.moveServos(port, pack, flang, frang, blang, brang)
 
