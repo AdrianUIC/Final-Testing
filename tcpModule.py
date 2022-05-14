@@ -14,6 +14,9 @@ class transmitter:
     def send_msg(self, msg):
         self.CONN.sendall(msg)
 
+    def close_conn(self):
+        self.CONN.close()
+
 class reciever:
     def __init__(self, HOST, PORT):
         self.HOST = HOST
