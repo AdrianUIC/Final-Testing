@@ -1,7 +1,7 @@
 import serdes
 import tcpModule
 import time
-from mobilityMovementCommandv3 import moveRover
+from mobilityMovementCommandv4 import moveRover
 import os
 import RPi.GPIO as GPIO
 
