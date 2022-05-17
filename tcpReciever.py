@@ -6,8 +6,8 @@ import os
 
 while True:
     try:
-        #HOST = '192.168.1.162'
-        HOST = '0.0.0.0' #special address means "any"
+        HOST = '192.168.0.10'
+        #HOST = '0.0.0.0' #special address means "any"
         PORT = 2356
 
         #monitor pi with GPIO

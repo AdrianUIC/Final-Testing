@@ -17,7 +17,7 @@ while True:
         rc1, rc2 = moveRover.init_RoboClaw()
         print('motor controller and servos connected!')
 
-        HOST = '192.168.0.102'
+        HOST = '192.168.0.10'
         #HOST = '0.0.0.0'
         PORT = 2356
 
